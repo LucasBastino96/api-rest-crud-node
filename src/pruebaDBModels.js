@@ -5,8 +5,8 @@ const AfiliadoSchema = new Schema(
   {
     nombre: { type: String },
     apellido: String,
-    edad: Number,
-    dni: Number,
+    edad: String,
+    dni: String,
     done: Boolean
   },
   {
@@ -17,13 +17,13 @@ const AfiliadoSchema = new Schema(
 const FamiliarAfiliadoSchema = new Schema({
   nombre: String,
   apellido: String,
-  edad: Number,
-  dni: Number,
-  dni_original: Number
+  edad: String,
+  dni: String,
+  dni_original: String
 });
 
 
 
-export const Afiliado = mongoose.model('afiliados4', AfiliadoSchema); // afiliados1 es el nombre de la base de datos, si no existe se crea
+export const AfiliadoModel = mongoose.model('afiliados4', AfiliadoSchema); // afiliados1 es el nombre de la base de datos, si no existe se crea
 
-export const Familiar = mongoose.model('familiares_afiliados', FamiliarAfiliadoSchema);
+export const FamiliarModel = mongoose.model('familiaresAfiliados5', FamiliarAfiliadoSchema);

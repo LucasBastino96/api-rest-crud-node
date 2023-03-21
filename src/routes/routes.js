@@ -1,10 +1,7 @@
 import { Router } from 'express';
 export const router = Router();
-import axios from 'axios'; // hace lo mismo que fetch, trae datos desde un enlace
 import { connection } from '../databaseConnection.js';
-import { Afiliado } from '../pruebaDBModels.js';
 import * as c from '../controllers/afiliados.controllers.js'
-let products = [];
 
 
 await connection();
@@ -26,6 +23,14 @@ router.get('/toggleDone/:id', c.toggleDone);
 router.get('/eliminarAfiliado/:id', c.eliminarAfiliado);
 
 router.post('/agregarFamiliar', c.agregarFamiliar)
+
+router.get('/buscador', c.buscador)
+
+router.post('/buscar', c.buscar)
+
+router.post('/buscarFamiliares', c.buscarFamiliares)
+
+router.get('/converter', c.converter)
 
 
 
