@@ -6,11 +6,11 @@ import * as c from '../controllers/afiliados.controllers.js'
 
 await connection();
 
-router.get('/', (req, res) => {
-  res.send('pagina principal');
-});
+router.get('/', (req, res) => { res.send('pagina principal'); });
 
 router.get('/formDePrueba', c.renderForm);
+
+router.get('/formAgregarAfiliado', c.renderFormAgregarAfiliado);
 
 router.post('/agregarAfiliado', c.agregarAfiliado);
 
@@ -18,23 +18,19 @@ router.get('/editarAfiliado/:id', c.editarAfiliadoForm);
 
 router.post('/editarAfiliado/:id', c.editarAfiliado);
 
-router.get('/toggleDone/:id', c.toggleDone);
-
 router.get('/eliminarAfiliado/:id', c.eliminarAfiliado);
 
 router.post('/agregarFamiliar', c.agregarFamiliar)
 
-router.get('/buscador', c.buscador)
+router.get('/buscadorRealTime', c.renderBuscadorRealTime)
 
-router.post('/buscar', c.buscar)
+router.post('/buscadorRealTime', c.buscadorRealTime)
 
-router.post('/buscarFamiliares', c.buscarFamiliares)
+router.get('/familiaresAfiliado/:id', c.renderFamiliaresAfiliado)
 
-router.get('/converter', c.converter)
+router.get('/eliminar/:id', c.eliminarAfiliado)
 
-
-
-
+router.get('/rechazo', c.rechazo)
 
 
 

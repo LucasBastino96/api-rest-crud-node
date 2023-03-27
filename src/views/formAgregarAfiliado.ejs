@@ -36,22 +36,7 @@
           </div>
         </div>
         
-        <div class="col-md-7">
-          <ul>
-            <% afiliados.forEach( afiliado => { %>
-              <li><%= afiliado.nombre; %></li>
-              <p>edad: <%= afiliado.edad; %></p>
-              <a class="btn btn-primary" href="/editarAfiliado/<%=afiliado._id%>">Editar</a>
-              <!-- va al editarAfiliado del routes, no al .ejs, desp el del routes si va al .ejs -->
-              <a class="btn btn-danger" href="/eliminarAfiliado/<%=afiliado._id%>">Eliminar</a>
-              <% if (!afiliado.done) { %>
-                <a class="btn btn-success" href="/toggleDone/<%=afiliado._id%>">Done</a>
-                <% } else { %>
-                  <a class="btn btn-warning" href="/toggleDone/<%=afiliado._id%>">Undone</a>
-                  <% }}); %>
-      </ul>
-    </div>
-  </div>
+
 </container>
 <script src="/scripts/scripts.js"></script>
 <script src="/scripts/accionesBotones.js"></script>
