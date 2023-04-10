@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
+import mongoosePaginate from 'mongoose-paginate-v2'
 
 const AfiliadoSchema = new Schema(
   {
@@ -22,7 +23,8 @@ const FamiliarAfiliadoSchema = new Schema({
   dni_original: String
 });
 
-
+AfiliadoSchema.plugin(mongoosePaginate);
+FamiliarAfiliadoSchema.plugin(mongoosePaginate);
 
 export const AfiliadoModel = mongoose.model('afiliados4', AfiliadoSchema); // afiliados1 es el nombre de la base de datos, si no existe se crea
 

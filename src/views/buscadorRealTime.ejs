@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include('partials/head.ejs') %>  <!-- va sin la barra '/' antes de 'partials' -->
 <body>
-    <input name="key" onkeyup="checkKey(value);" >
+    <input name="key" onkeyup="checkKey(value, 1);" >
 
     <a href="/formAgregarAfiliado">Agregar afiliado</a>
 
     <section id="seccion-busqueda" >No hay coincidencias</section>
     <section id="confirm"></section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table" id="tabla-resultadosBusqueda"></table>
+                <div id="footer-tabla"></div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="/scripts/buscadorRealTime.js" ></script>

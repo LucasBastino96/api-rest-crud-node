@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <%- include('partials/head.ejs') %>
 <body>
-    <% afiliados.map( afi => { %>
-        <h1>Nombre: <%= afi.nombre %></h1>
-        <h3>Apellido: <%= afi.apellido %></h3>
-        <h3>Edad: <%= afi.edad %></h3>
-    <% }) %>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>DNI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% afiliados.map( afi => { %>
+                <tr>
+                    <td>Nombre: <%= afi.nombre %></td>
+                    <td>Apellido: <%= afi.apellido %></td>
+                    <td>Edad: <%= afi.edad %></td>
+                </tr>
+            <% }) %>        
+        </tbody>
+    </table>
+    
 </body>
 </html>

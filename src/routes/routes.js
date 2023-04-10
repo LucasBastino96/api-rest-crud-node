@@ -32,6 +32,8 @@ router.get('/eliminar/:id', c.eliminarAfiliado)
 
 router.get('/rechazo', c.rechazo)
 
+router.get('/creadorDeData', c.creadorDeData)
+
 
 
 

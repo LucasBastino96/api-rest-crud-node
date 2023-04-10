@@ -1,33 +1,48 @@
 import { AfiliadoModel, FamiliarModel } from '../pruebaDBModels.js';
 
+
 export const renderForm = async (req, res) => {
   try {
     const afiliados = await AfiliadoModel.find().lean(); // el lean hace que en vez de devolver documentos de mongodb devuelve objetos de js para que funcionen mejor con funciones (en este caso igual anda si se lo sacas)
-    res.render('formDePrueba.ejs', { afiliados });
+    res.render('formDePrueba.ejs', { afiliados, titulo : 'Formulario de prueba' });
   } catch (error) {
     console.log(error);
   }
 };
 
 export const renderBuscadorRealTime = (req, res) =>{
-  res.render('buscadorRealTime.ejs');
+  res.render('buscadorRealTime.ejs', { titulo : 'Buscador en tiempo real' });
 }
 
 export const buscadorRealTime = async (req, res) => { 
   const key = req.body.key.trim() // trim elimina los espacios en blanco que hay al principio y al final
-  const resultadosBusqueda = await AfiliadoModel.find({
+  const page = req.body.page
+  console.log(page)
+  const resultadosBusqueda = await AfiliadoModel.paginate({
     $or:[
-      {nombre: {$regex: '.*' + key + '.*' }},
-      {apellido: {$regex: '.*' + key + '.*' }},
-      {edad: {$regex: '.*' + key + '.*' }}
-    ]
-  })
-  // console.log(resultadosBusqueda)
-  let condicion = (key == '') ? res.send('No hay coincidencias') : res.send(resultadosBusqueda);
+      {nombre: new RegExp(key, "i")},  
+      {apellido: new RegExp(key, "i")},
+      {edad : new RegExp(key)}    
+      // {apellido: {$regex: '.*' + key + '.*' }} otra forma de hacerlo pero no se como agregarle el case insensitive
+    ]},
+    { limit : 5, page : page})
+  console.log(resultadosBusqueda)
+  let condicion = (key == '') ? res.send('No hay coincidencias') : res.send({resultadosBusqueda, key})
 };
 
+export const creadorDeData = async (req, res) => {
+  for (let i = 26; i < 400; i++){
+    await AfiliadoModel.create({
+      nombre: "asdasdasd",
+      apellido: "bbbsjdbsdjbsj",
+      edad: i
+    })
+  }
+res.send('listo')
+}
+
 export const renderFormAgregarAfiliado = (req, res) =>{
-  res.render('formAgregarAfiliado.ejs')
+  res.render('formAgregarAfiliado.ejs', { titulo : 'Formulario de agregar afiliado'})
 }
 
 export const eliminarAfiliado = async (req, res) => {
@@ -44,7 +59,7 @@ export const rechazo = (req,res) =>{
 export const renderFamiliaresAfiliado = async(req,res) =>{
   const afiliado = await AfiliadoModel.findById(req.params.id);
   const familiares = await FamiliarModel.find({ dni_original : afiliado.dni })
-  res.render('familiaresAfiliados.ejs', { familiares })
+  res.render('familiaresAfiliados.ejs', { familiares, titulo : 'Resultados busqueda familiares' })
 }
 
 export const agregarAfiliado = async (req) => {
@@ -66,7 +81,7 @@ export const agregarFamiliar = async (req) => {
 export const editarAfiliadoForm = async (req, res) => {
   const id = req.params.id;
   const afiliado = await AfiliadoModel.findById(id).lean();
-  res.render('editarAfiliado.ejs', { afiliado });
+  res.render('editarAfiliado.ejs', { afiliado, titulo : 'Editar información del afiliado' });
 };
 
 export const editarAfiliado = async (req, res) => {
