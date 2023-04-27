@@ -14,12 +14,10 @@
         <title>Software Sindicato San Martín</title>
     </head>
 <body>
-    
-    <% familiares.map( f => { %>
-        <h1>Nombre: <%= f.nombre %></h1>
-        <h3>Edad: <%= f.edad %></h3>
-        <h3>Familiar de: <%= f.dni_original %></h3>
-    <% }); %>
-
+    <form action="/editarFamiliar/<%=familiar._id%>" method="POST"> <!-- este es un editarFamiliar pero POST -->
+    <input type="text" name="nombre" placeholder="<%=familiar.nombre%>">
+    <input type="number" name="edad" placeholder="<%=familiar.edad%>">
+    <button type="submit">Enviar</button>
+    </form>
 </body>
 </html>

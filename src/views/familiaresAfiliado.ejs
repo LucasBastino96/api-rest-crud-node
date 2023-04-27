@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+        />
+        <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+        <title>Software Sindicato San Martín</title>
+    </head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table" id="tabla-resultadosBusqueda">
+                    <% if (familiares == ''){  %>
+                        <p> No hay familiares </p>
+                    <% }
+
+                    else { %>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Edad</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-resultadosBusqueda">
+                            <% familiares.map ( f => { %>
+                                <tr>
+                                    <td><%=f.nombre%></td>
+                                    <td><%=f.edad%></td>
+                                    <td><a class="btn btn-primary" href="/editarFamiliar/<%=f._id%>">Editar</a></td>
+                                    <td><button class="btn btn-danger" id="<%=f._id%>" onclick="checkConfirm('eliminar', 'familiar', id)">Eliminar</button></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                        
+                    <% } %>
+                </table>
+                <div id="footer-tabla"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/checkConfirm.js"></script>
+</body>
+</html>

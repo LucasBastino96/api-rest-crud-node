@@ -1,6 +1,10 @@
 import { AfiliadoModel, FamiliarModel } from '../pruebaDBModels.js';
 
 
+export const renderPaginaPrincipal = (req, res) =>{
+  res.render('paginaPrincipal.ejs')
+}
+
 export const renderForm = async (req, res) => {
   try {
     const afiliados = await AfiliadoModel.find().lean(); // el lean hace que en vez de devolver documentos de mongodb devuelve objetos de js para que funcionen mejor con funciones (en este caso igual anda si se lo sacas)
@@ -11,7 +15,7 @@ export const renderForm = async (req, res) => {
 };
 
 export const renderBuscadorRealTime = (req, res) =>{
-  res.render('buscadorRealTime.ejs', { titulo : 'Buscador en tiempo real' });
+  res.render('buscadorRealTime.ejs');
 }
 
 export const buscadorRealTime = async (req, res) => { 
@@ -25,7 +29,7 @@ export const buscadorRealTime = async (req, res) => {
       {edad : new RegExp(key)}    
       // {apellido: {$regex: '.*' + key + '.*' }} otra forma de hacerlo pero no se como agregarle el case insensitive
     ]},
-    { limit : 5, page : page})
+    { limit : 10, page : page})
   console.log(resultadosBusqueda)
   let condicion = (key == '') ? res.send('No hay coincidencias') : res.send({resultadosBusqueda, key})
 };
@@ -49,7 +53,14 @@ export const eliminarAfiliado = async (req, res) => {
   const afiliado = await AfiliadoModel.findById(req.params.id);
   await AfiliadoModel.findByIdAndDelete(req.params.id);
   console.log(`afiliado ${afiliado.nombre} eliminado`)
-  res.redirect('/buscadorRealTime')
+  res.redirect('/')
+}
+
+export const eliminarFamiliar = async (req, res) => {
+  const familiar = await FamiliarModel.findById(req.params.id);
+  await FamiliarModel.findByIdAndDelete(req.params.id);
+  console.log(`familiar ${familiar.nombre} eliminado`)
+  res.redirect('/')
 }
 
 export const rechazo = (req,res) =>{
@@ -58,8 +69,10 @@ export const rechazo = (req,res) =>{
 
 export const renderFamiliaresAfiliado = async(req,res) =>{
   const afiliado = await AfiliadoModel.findById(req.params.id);
+  console.log(`el afiliado es ${afiliado}`)
   const familiares = await FamiliarModel.find({ dni_original : afiliado.dni })
-  res.render('familiaresAfiliados.ejs', { familiares, titulo : 'Resultados busqueda familiares' })
+  console.log(familiares)
+  res.render('familiaresAfiliado.ejs', { familiares })
 }
 
 export const agregarAfiliado = async (req) => {
@@ -78,15 +91,26 @@ export const agregarFamiliar = async (req) => {
   // res.redirect('formDePrueba');
 };
 
+export const editarFamiliarForm = async (req, res) =>{
+  const id = req.params.id;
+  const familiar = await FamiliarModel.findById(id).lean();
+  res.render('editarFamiliar.ejs', { familiar });
+}
+
+export const editarFamiliar = async (req, res) => {
+  await FamiliarModel.findByIdAndUpdate(req.params.id, req.body);
+  res.redirect('/');
+}
+
 export const editarAfiliadoForm = async (req, res) => {
   const id = req.params.id;
   const afiliado = await AfiliadoModel.findById(id).lean();
-  res.render('editarAfiliado.ejs', { afiliado, titulo : 'Editar información del afiliado' });
+  res.render('editarAfiliado.ejs', { afiliado });
 };
 
 export const editarAfiliado = async (req, res) => {
   await AfiliadoModel.findByIdAndUpdate(req.params.id, req.body);
-  res.redirect('/formDePrueba');
+  res.redirect('/');
   // let afiliado = await AfiliadoModel.findById(id);
   // afiliado = { ...afiliado, req.body }; no funciona, revisar como  seria la forma
 };

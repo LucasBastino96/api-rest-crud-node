@@ -28,14 +28,14 @@ fetch('http://localhost:5000/buscadorRealTime', {
 const tablaResultadosBusqueda = (res) =>{
     const docs = res.resultadosBusqueda.docs
     const titulo = document.getElementById('seccion-busqueda')
-    const tabla = document.getElementById('tabla-resultadosBusqueda')
+    const headerTabla = document.getElementById('tabla-resultadosBusqueda')
     if (res == ''){
         titulo.innerHTML = 'No hay coincidencias'
         tabla.innerHTML = '';
 
     } else {
     titulo.innerHTML = 'Lista de afiliados:'
-    tabla.innerHTML = `
+    headerTabla.innerHTML = `
     <thead>
         <tr>
             <th>Nombre</th>
@@ -57,8 +57,9 @@ const tablaResultadosBusqueda = (res) =>{
                 <td>${a.apellido}</td>
                 <td>${a.edad}</td>
                 <td>${a.dni}</td>
+                <td><a class="btn btn-primary" href="/editarAfiliado/${a._id}">Editar</a></td>
                 <td><a class="btn btn-primary" href="/familiaresAfiliado/${a._id}">Familiares</a></td>
-                <td><button class="btn btn-danger" name="eliminar" id="${a._id}" onclick="checkConfirm(name, id)">Eliminar</button></td>
+                <td><button class="btn btn-danger" id="${a._id}" onclick="checkConfirm('eliminar', 'afiliado', id)">Eliminar</button></td>
             </tr>
         `
     })
@@ -104,8 +105,8 @@ const footerTabla = (res) =>{
 
         } else {
             for (let i=page-5; i<page; i++){ // sino mostrar las anteriores 5
-            // console.log(i)
-            footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
+                // console.log(i)
+                footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
             }
 
             for (let i=page; i<page+5; i++){ // y las siguientes 5
@@ -135,10 +136,3 @@ const footerTabla = (res) =>{
 } // termina funcion
 
 
-
-const checkConfirm = (tipo, id) => {
-    const respuesta = confirm('seguro desea eliminar el afiliado?')
-    console.log(id)
-    if (respuesta){window.location.href = `/${tipo}/${id}`}
-    // else {window.location.href = '/rechazo'}
-}

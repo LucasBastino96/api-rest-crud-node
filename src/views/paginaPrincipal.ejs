@@ -14,7 +14,17 @@
         <title>Software Sindicato San Martín</title>
     </head>
 <body>
-    <input name="key" onkeyup="checkKey(value, 1);" >
+
+<nav class="navbar navbar-light bg-light navbar-expand-lg">
+    <a class="navbar-brand" href="#">Index</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Buscador</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Hola</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Importar/Exportar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Imprimir</a></li>
+            <li class="nav-item"><input name="key" onkeyup="checkKey(value, 1);"></li>
+        </ul>
+</nav>
 
     <a href="/formAgregarAfiliado">Agregar afiliado</a>
 
@@ -32,5 +42,8 @@
 
 
     <script src="/scripts/buscadorRealTime.js" ></script>
+    <script src="/scripts/checkConfirm.js"></script>
+    <script src="/scripts/scripts.js"></script>
 </body>
+<%- include('partials/footer.ejs'); %>
 </html>
