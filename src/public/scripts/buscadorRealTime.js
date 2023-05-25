@@ -3,12 +3,10 @@ const checkKey = (key, page) => {
 }
 
 const enviarKeyVacia = () => {
-    const resultadosBusqueda = document.getElementById('seccion-busqueda');
-    resultadosBusqueda.innerHTML = 'No hay coincidencias';
-    const tablaResultadosBusqueda = document.getElementById('tabla-resultadosBusqueda')
-    tablaResultadosBusqueda.innerHTML = '';
-    const footerTabla = document.getElementById('footer-tabla')
-    footerTabla.innerHTML = ``
+    document.getElementById('seccion-busqueda').innerHTML = '';
+    document.getElementById('tabla-resultadosBusqueda').innerHTML = '';
+    document.getElementById('footer-tabla').innerHTML = ``
+    document.getElementById('logo').innerHTML = `<i class="bi bi-alexa"></i>`
 }
 
 const enviarKey = (key, page) => {
@@ -29,37 +27,35 @@ const tablaResultadosBusqueda = (res) =>{
     const docs = res.resultadosBusqueda.docs
     const titulo = document.getElementById('seccion-busqueda')
     const headerTabla = document.getElementById('tabla-resultadosBusqueda')
-    if (res == ''){
+    document.getElementById('logo').innerHTML = ``;
+    if (docs == ''){
         titulo.innerHTML = 'No hay coincidencias'
-        tabla.innerHTML = '';
-
+        headerTabla.innerHTML = ``
+        document.getElementById('footer-tabla').innerHTML = '';
+        
     } else {
-    titulo.innerHTML = 'Lista de afiliados:'
-    headerTabla.innerHTML = `
-    <thead>
+        titulo.innerHTML = 'Lista de afiliados:'
+        headerTabla.innerHTML = `
+        <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Edad</th>
-            <th>DNI</th>
-            <th></th>
-            <th></th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>DNI</th>
         </tr>
-    </thead>
-    <tbody id="tbody-resultadosBusqueda"></tbody>`
-
-    const data = document.getElementById('tbody-resultadosBusqueda')
-    data.innerHTML = '';
-    docs.forEach(a => {
+        </thead>
+        <tbody id="tbody-resultadosBusqueda"></tbody>`
+        
+        const data = document.getElementById('tbody-resultadosBusqueda')
+        docs.forEach(a => {
         data.innerHTML += `
             <tr>
-                <td>${a.nombre}</td>
-                <td>${a.apellido}</td>
-                <td>${a.edad}</td>
-                <td>${a.dni}</td>
-                <td><a class="btn btn-primary" href="/editarAfiliado/${a._id}">Editar</a></td>
-                <td><a class="btn btn-primary" href="/familiaresAfiliado/${a._id}">Familiares</a></td>
-                <td><button class="btn btn-danger" id="${a._id}" onclick="checkConfirm('eliminar', 'afiliado', id)">Eliminar</button></td>
+                    <td>${a.nombre}</td>
+                    <td>${a.apellido}</td>
+                    <td>${a.edad}</td>
+                    <td>${a.dni}</td>
+                    <td><a class="btn btn-primary" href="/fichaAfiliado/${a._id}">Ficha</a></td>
+                    
             </tr>
         `
     })

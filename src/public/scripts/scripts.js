@@ -1,4 +1,4 @@
-function decirHola() {
+function backUp() {
   console.log('hola');
 }
 

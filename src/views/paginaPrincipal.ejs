@@ -10,40 +10,66 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <link href="/css/styles.css" rel="stylesheet" type="text/css" />
         <title>Software Sindicato San Martín</title>
     </head>
 <body>
 
-<nav class="navbar navbar-light bg-light navbar-expand-lg">
-    <a class="navbar-brand" href="#">Index</a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Buscador</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Hola</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Importar/Exportar</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Imprimir</a></li>
-            <li class="nav-item"><input name="key" onkeyup="checkKey(value, 1);"></li>
-        </ul>
-</nav>
+  <nav class="navbar bg-light navbar-expand ">
+    <div class="container-fluid">
+      <div class="navbar-nav mx-auto align-items-center">
+          <div class="nav-item">
+            <i class="bi bi-alexa"></i>
+          </div>
+          <a class="nav-link" href="/formAgregarAfiliado">Agregar afiliado</a>
+          <a class="nav-link" href="#" onclick="backUp();">BackUp</a>
+          <a class="nav-link">Imprimir</a>
+          <div class="barra-busqueda">
+            <form class="d-flex align-items-center" role="search">
+              <input name="key" onkeyup="checkKey(value, 1);" class="form-control me-2" type="search" placeholder="Buscar afiliado" aria-label="Search">
+                        
+            </form>
+          </div>
+      </div>
+    </div>
+  </nav>
 
-    <a href="/formAgregarAfiliado">Agregar afiliado</a>
-
-    <section id="seccion-busqueda" >No hay coincidencias</section>
-    <section id="confirm"></section>
-
-    <div class="container">
+<div class="container-fluid general">
+    <div class="row text-center">
+    <div class="col-2">Afiliados recientes:</div>
+    <div class="col-10">
+      <div class="align-self-center" id="logo">
+        <i class="bi bi-alexa"></i>
+      </div>
+      <section id="seccion-busqueda" ></section>
+      <section id="confirm"></section>
+      <div class="container">
         <div class="row">
             <div class="col">
-                <table class="table" id="tabla-resultadosBusqueda"></table>
+                <table class="table" id="tabla-resultadosBusqueda">
+                    <thead></thead>
+                    <tbody id="tbody-resultadosBusqueda"></tbody>
+                </table>
                 <div id="footer-tabla"></div>
             </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
 
+  <div class="footer bg-light text-center">
+    <p> Sindicato de Madereros San Martín </p> 
+  </div>
+
+
+  
 
     <script src="/scripts/buscadorRealTime.js" ></script>
     <script src="/scripts/checkConfirm.js"></script>
     <script src="/scripts/scripts.js"></script>
+    
 </body>
-<%- include('partials/footer.ejs'); %>
+
 </html>

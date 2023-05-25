@@ -47,7 +47,7 @@ res.send('listo')
 
 export const renderFormAgregarAfiliado = (req, res) =>{
   res.render('formAgregarAfiliado.ejs', { titulo : 'Formulario de agregar afiliado'})
-}
+};
 
 export const eliminarAfiliado = async (req, res) => {
   const afiliado = await AfiliadoModel.findById(req.params.id);
@@ -63,17 +63,6 @@ export const eliminarFamiliar = async (req, res) => {
   res.redirect('/')
 }
 
-export const rechazo = (req,res) =>{
-  res.send('rechazo')
-}
-
-export const renderFamiliaresAfiliado = async(req,res) =>{
-  const afiliado = await AfiliadoModel.findById(req.params.id);
-  console.log(`el afiliado es ${afiliado}`)
-  const familiares = await FamiliarModel.find({ dni_original : afiliado.dni })
-  console.log(familiares)
-  res.render('familiaresAfiliado.ejs', { familiares })
-}
 
 export const agregarAfiliado = async (req) => {
   console.log(req.body);
@@ -91,26 +80,24 @@ export const agregarFamiliar = async (req) => {
   // res.redirect('formDePrueba');
 };
 
-export const editarFamiliarForm = async (req, res) =>{
-  const id = req.params.id;
-  const familiar = await FamiliarModel.findById(id).lean();
-  res.render('editarFamiliar.ejs', { familiar });
-}
 
 export const editarFamiliar = async (req, res) => {
   await FamiliarModel.findByIdAndUpdate(req.params.id, req.body);
-  res.redirect('/');
+  const familiar = await FamiliarModel.findById(req.params.id)
+  const afiliado = await AfiliadoModel.findOne( { dni : familiar.dni_original }) // findOne porque sino hace un array
+  res.redirect(`/fichaAfiliado/${afiliado._id}`)
 }
-
-export const editarAfiliadoForm = async (req, res) => {
-  const id = req.params.id;
-  const afiliado = await AfiliadoModel.findById(id).lean();
-  res.render('editarAfiliado.ejs', { afiliado });
-};
 
 export const editarAfiliado = async (req, res) => {
   await AfiliadoModel.findByIdAndUpdate(req.params.id, req.body);
-  res.redirect('/');
+  res.redirect(`/fichaAfiliado/${req.params.id}`)
   // let afiliado = await AfiliadoModel.findById(id);
   // afiliado = { ...afiliado, req.body }; no funciona, revisar como  seria la forma
 };
+
+export const fichaAfiliado = async (req, res) =>{
+  const afiliado = await AfiliadoModel.findById(req.params.id);
+  const familiares = await FamiliarModel.find({ dni_original : afiliado.dni })
+  res.render('fichaAfiliado.ejs', {afiliado, familiares})
+
+}

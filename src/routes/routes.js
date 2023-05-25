@@ -8,39 +8,27 @@ await connection();
 
 router.get('/', c.renderPaginaPrincipal);
 
-router.get('/formDePrueba', c.renderForm);
-
 router.get('/formAgregarAfiliado', c.renderFormAgregarAfiliado);
+
+router.post('/buscadorRealTime', c.buscadorRealTime);
 
 router.post('/agregarAfiliado', c.agregarAfiliado);
 
-router.get('/editarAfiliado/:id', c.editarAfiliadoForm);
+router.post('/editar/afiliado/:id', c.editarAfiliado);
 
-router.post('/editarAfiliado/:id', c.editarAfiliado);
+router.post('/editar/familiar/:id', c.editarFamiliar);
 
 router.get('/eliminarAfiliado/:id', c.eliminarAfiliado);
 
 router.post('/agregarFamiliar', c.agregarFamiliar)
 
-router.get('/editarFamiliar/:id', c.editarFamiliarForm)
-
-router.post('/editarFamiliar/:id', c.editarFamiliar)
-
-router.get('/buscadorRealTime', c.renderBuscadorRealTime)
-
-router.post('/buscadorRealTime', c.buscadorRealTime)
-
-router.get('/familiaresAfiliado/:id', c.renderFamiliaresAfiliado)
-
 router.get('/eliminar/afiliado/:id', c.eliminarAfiliado)
 
 router.get('/eliminar/familiar/:id', c.eliminarFamiliar)
 
-router.get('/rechazo', c.rechazo)
+router.get('/fichaAfiliado/:id', c.fichaAfiliado)
 
 router.get('/creadorDeData', c.creadorDeData)
-
-
 
 
 
