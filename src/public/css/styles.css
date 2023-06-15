@@ -4,7 +4,12 @@ body{
 
 .disabled{
     pointer-events: none;
-    opacity: 0.4;
+    opacity: 1;
+}
+
+.disabledFamiliar{
+    pointer-events: none;
+    opacity: 1;
 }
 
 .pag-actual{
@@ -55,7 +60,3 @@ p{
     display: block
 }
 
-.disabledFamiliar{
-    pointer-events: none;
-    opacity: 0.4;
-}

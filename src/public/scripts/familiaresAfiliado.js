@@ -29,18 +29,3 @@ const mostrarBotonFamiliar = (id) =>{
     
 }
 
-const ponerValues = () =>{
-    const inputs = Array.from(document.getElementsByClassName('disabled'))
-    inputs.map( i => {
-        i.value = i.placeholder;
-    })
-
-}
-
-const ponerValuesFamiliar = () =>{
-    const inputs = Array.from(document.getElementsByClassName('disabledFamiliar'))
-    inputs.map( i => {
-        i.value = i.placeholder;
-    })
-
-}
