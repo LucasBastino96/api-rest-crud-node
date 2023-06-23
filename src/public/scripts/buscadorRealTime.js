@@ -7,6 +7,7 @@ const enviarKeyVacia = () => {
     document.getElementById('tabla-resultadosBusqueda').innerHTML = '';
     document.getElementById('footer-tabla').innerHTML = ``
     document.getElementById('logo').innerHTML = `<i class="bi bi-alexa"></i>`
+    document.getElementById('container-tabla-footer').style.display = 'none'
 }
 
 const enviarKey = (key, page) => {
@@ -46,6 +47,7 @@ const tablaResultadosBusqueda = (res) =>{
         </thead>
         <tbody id="tbody-resultadosBusqueda"></tbody>`
         
+        document.getElementById('container-tabla-footer').style.display = 'block';
         const data = document.getElementById('tbody-resultadosBusqueda')
         docs.forEach(a => {
         data.innerHTML += `

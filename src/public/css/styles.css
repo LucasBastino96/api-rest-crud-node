@@ -60,3 +60,18 @@ p{
     display: block
 }
 
+.general{
+    height: 50em;
+}
+
+#container-tabla-footer{
+    display: none;
+}
+
+.em-45{
+    height: 45em;
+}
+
+.marg0{
+    margin-top: 150px;
+}

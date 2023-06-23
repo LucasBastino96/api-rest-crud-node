@@ -35,29 +35,36 @@
     </div>
   </nav>
 
-<div class="container-fluid general">
+<div class="container-fluid">
     <div class="row text-center">
-    <div class="col-2">Afiliados recientes:</div>
+    <div class="col-2">Afiliados recientes:
+      <% afiliadosRecientes.lista.map(a=>{ %>
+        <a href="/fichaAfiliado/<%=a._id%>"><h5><%=a.nombre%> <%=a.apellido%></h5></a>
+      <% }) %>
+
+      
+
+    </div>
     <div class="col-10">
       <div class="align-self-center" id="logo">
         <i class="bi bi-alexa"></i>
       </div>
       <section id="seccion-busqueda" ></section>
-      <section id="confirm"></section>
-      <div class="container">
+      <div class="container em-45" id="container-tabla-footer">
         <div class="row">
-            <div class="col">
-                <table class="table" id="tabla-resultadosBusqueda">
-                    <thead></thead>
-                    <tbody id="tbody-resultadosBusqueda"></tbody>
-                </table>
-                <div id="footer-tabla"></div>
+          <div class="col">
+            <table class="table" id="tabla-resultadosBusqueda">
+              <thead></thead>
+              <tbody id="tbody-resultadosBusqueda"></tbody>
+            </table>
+            <div class="marg0" id="footer-tabla"></div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+    
 
   <div class="footer bg-light text-center">
     <p> Sindicato de Madereros San Martín </p> 
