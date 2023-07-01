@@ -39,25 +39,23 @@ const tablaResultadosBusqueda = (res) =>{
         headerTabla.innerHTML = `
         <thead>
         <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
+        <th>Apellido y Nombre</th>
         <th>Edad</th>
         <th>DNI</th>
+        <th></th>
         </tr>
         </thead>
         <tbody id="tbody-resultadosBusqueda"></tbody>`
         
-        document.getElementById('container-tabla-footer').style.display = 'block';
+        document.getElementById('container-tabla-footer').style.display = 'flex';
         const data = document.getElementById('tbody-resultadosBusqueda')
         docs.forEach(a => {
         data.innerHTML += `
             <tr>
-                    <td>${a.nombre}</td>
-                    <td>${a.apellido}</td>
+                    <td>${a.apellido}, ${a.nombre}</td>
                     <td>${a.edad}</td>
                     <td>${a.dni}</td>
-                    <td><a class="btn btn-primary" href="/fichaAfiliado/${a._id}">Ficha</a></td>
-                    
+                    <td><a class="btn boton-ficha" href="/fichaAfiliado/${a._id}"><i class="bi bi-file-earmark-text"></i></a></td>     
             </tr>
         `
     })
@@ -74,7 +72,7 @@ const footerTabla = (res) =>{
     const nextPage = res.resultadosBusqueda.nextPage
     const hasNextPage = res.resultadosBusqueda.hasNextPage
     const aproximador = Math.round(totalPages/6)
-    const footerTabla = document.getElementById('footer-tabla')
+    const footerTabla = document.getElementById('ul-pagination')
     footerTabla.innerHTML = ``;
 
     
@@ -82,9 +80,9 @@ const footerTabla = (res) =>{
     // EMPIEZA EL IF
     if (totalPages > 10){
         if (hasPrevPage == true){
-                footerTabla.innerHTML = `<button class="btn btn-primary" id="btn-primera" value="${key}" name="1" onclick="enviarKey(value, name)"><<</button>`;
-                footerTabla.innerHTML += `<button class="btn btn-primary" id="aprox-menos" value="${key}" name="${page-aproximador}" onclick="enviarKey(value, name)">...</button>
-                <button class="btn btn-primary" id="btn-prev" value="${key}" name="${prevPage}" onclick="enviarKey(value, name)"><</button>`
+                footerTabla.innerHTML = `<button class="btn btn-paginador" id="btn-primera" value="${key}" name="1" onclick="enviarKey(value, name)"><<</button>`;
+                footerTabla.innerHTML += `<button class="btn btn-paginador" id="aprox-menos" value="${key}" name="${page-aproximador}" onclick="enviarKey(value, name)">...</button>
+                <button class="btn btn-paginador" id="btn-prev" value="${key}" name="${prevPage}" onclick="enviarKey(value, name)"><</button>`
             if (page < aproximador){
                 document.getElementById('aprox-menos').name = 1;
             }
@@ -92,31 +90,31 @@ const footerTabla = (res) =>{
         if (page <= 5){ // si son las primeras 5 paginas mostrar las primeras 10 paginas
             for (let i=1; i<10; i++){
                 // console.log(i)
-                footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
+                footerTabla.innerHTML += `<button class="btn btn-paginador" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
             }
 
         } else if (page >= totalPages-5){ // si son las ultimas 5 paginas mostrar las ultimas 10 paginas
             for (let i=totalPages-10; i<totalPages+1; i++){
                 console.log(i)
-                footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
+                footerTabla.innerHTML += `<button class="btn btn-paginador" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
             }
 
         } else {
             for (let i=page-5; i<page; i++){ // sino mostrar las anteriores 5
                 // console.log(i)
-                footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
+                footerTabla.innerHTML += `<button class="btn btn-paginador" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
             }
 
             for (let i=page; i<page+5; i++){ // y las siguientes 5
                 // console.log(i)
-                footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
+                footerTabla.innerHTML += `<button class="btn btn-paginador" value="${key}" name="${i}" onclick="enviarKey(value, name)">${i}</button>`
             }
         }
 
         if (hasNextPage == true){
-            footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${nextPage}" onclick="enviarKey(value, name)">></button>`;
-            footerTabla.innerHTML += `<button class="btn btn-primary" id="aprox-mas" value="${key}" name="${page+aproximador}" onclick="enviarKey(value, name)">...</button>
-            <button class="btn btn-primary" value="${key}" name="${totalPages}" onclick="enviarKey(value, name)">>></button>`
+            footerTabla.innerHTML += `<button class="btn btn-paginador" value="${key}" name="${nextPage}" onclick="enviarKey(value, name)">></button>`;
+            footerTabla.innerHTML += `<button class="btn btn-paginador" id="aprox-mas" value="${key}" name="${page+aproximador}" onclick="enviarKey(value, name)">...</button>
+            <button class="btn btn-paginador" value="${key}" name="${totalPages}" onclick="enviarKey(value, name)">>></button>`
             if (totalPages-aproximador < page){
                 document.getElementById('aprox-mas').name = totalPages
             }
@@ -125,7 +123,7 @@ const footerTabla = (res) =>{
     } // TERMINA EL IF 
     // SI TUVIERA MENOS DE 10 PAGINAS
     else for (let i=0; i<totalPages; i++){
-        footerTabla.innerHTML += `<button class="btn btn-primary" value="${key}" name="${i+1}" onclick="enviarKey(value, name)">${i+1}</button>`
+        footerTabla.innerHTML += `<button class="btn btn-paginador" value="${key}" name="${i+1}" onclick="enviarKey(value, name)">${i+1}</button>`
     }
 
     const pagActual = document.getElementsByName(`${page}`);

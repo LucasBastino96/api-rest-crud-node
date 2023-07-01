@@ -28,6 +28,10 @@ router.get('/eliminar/familiar/:id', c.eliminarFamiliar)
 
 router.get('/fichaAfiliado/:id', c.fichaAfiliado)
 
+router.get('/imprimirPadron', c.imprimirPadron)
+
+router.get('/hacerBackup', c.hacerBackup)
+
 router.get('/creadorDeData', c.creadorDeData)
 
 

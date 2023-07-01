@@ -15,16 +15,18 @@
         <title>Software Sindicato San Martín</title>
     </head>
 <body>
+  <main class="container-principal">
 
-  <nav class="navbar bg-light navbar-expand ">
+  <header>
+  <nav class="navbar navbar-expand">
     <div class="container-fluid">
       <div class="navbar-nav mx-auto align-items-center">
           <div class="nav-item">
             <i class="bi bi-alexa"></i>
           </div>
           <a class="nav-link" href="/formAgregarAfiliado">Agregar afiliado</a>
-          <a class="nav-link" href="#" onclick="backUp();">BackUp</a>
-          <a class="nav-link">Imprimir</a>
+          <a class="nav-link" href="/hacerBackup">BackUp</a>
+          <a class="nav-link" href="/imprimirPadron">Imprimir</a>
           <div class="barra-busqueda">
             <form class="d-flex align-items-center" role="search">
               <input name="key" onkeyup="checkKey(value, 1);" class="form-control me-2" type="search" placeholder="Buscar afiliado" aria-label="Search">
@@ -34,41 +36,41 @@
       </div>
     </div>
   </nav>
+</header>
 
-<div class="container-fluid">
-    <div class="row text-center">
-    <div class="col-2">Afiliados recientes:
+<aside>
+  <div class="afiliados-recientes">
+    <ul class="list-group">
+      <li class="list-group-item">Afiliados recientes:</li>
       <% afiliadosRecientes.lista.map(a=>{ %>
-        <a href="/fichaAfiliado/<%=a._id%>"><h5><%=a.nombre%> <%=a.apellido%></h5></a>
+      <li class="list-group-item li-afiliados-recientes"><a class="link-afiliado" href="/fichaAfiliado/<%=a._id%>"><%=a.nombre%> <%=a.apellido%></a></li>
       <% }) %>
-
-      
-
-    </div>
-    <div class="col-10">
-      <div class="align-self-center" id="logo">
-        <i class="bi bi-alexa"></i>
-      </div>
-      <section id="seccion-busqueda" ></section>
-      <div class="container em-45" id="container-tabla-footer">
-        <div class="row">
-          <div class="col">
-            <table class="table" id="tabla-resultadosBusqueda">
-              <thead></thead>
-              <tbody id="tbody-resultadosBusqueda"></tbody>
-            </table>
-            <div class="marg0" id="footer-tabla"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-
-  <div class="footer bg-light text-center">
-    <p> Sindicato de Madereros San Martín </p> 
+    </ul>
   </div>
+</aside>
+
+  <article>
+    <section id="seccion-busqueda"></section>
+    <br>
+    <div id="container-tabla-footer">
+      <table class="table" id="tabla-resultadosBusqueda">
+        <thead></thead>
+        <tbody id="tbody-resultadosBusqueda"></tbody>
+      </table>
+    </div>
+    <div id="footer-tabla">
+      <ul id="ul-pagination" class="pagination"></ul>
+    </div>
+
+    <div id="logo">
+    <i class="bi bi-alexa"></i>
+  </article>
+
+  <!-- <footer>
+  <div class="bg-light text-center">
+    <p class="p-footer"> Sindicato de Madereros San Martín </p> 
+  </div>
+  </footer> -->
 
 
   
@@ -76,7 +78,7 @@
     <script src="/scripts/buscadorRealTime.js" ></script>
     <script src="/scripts/checkConfirm.js"></script>
     <script src="/scripts/scripts.js"></script>
-    
+  </main>
 </body>
 
 </html>

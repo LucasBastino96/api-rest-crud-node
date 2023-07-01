@@ -1,5 +1,61 @@
-body{
+.container-principal{
+    display: grid;
+    height: 100vh;
+    grid-gap: 2px;
+    grid-template-columns: 
+        [sidebar-start] 1.2fr [sidebar-end
+         content-start] 5fr [content-end];
+    grid-template-rows: 
+        [header-start] 0.4fr [header-end
+         content-start] 4fr [content-end]
+}
+
+header, aside, footer {
     background-color: #fefefe;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    
+}
+
+header{
+    grid-column: sidebar-start / content-end;
+    grid-row: header-start / header-end;
+    display: block;
+    background-color: #EEEEEE;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+
+
+article{
+    grid-column: content-start / content-end;
+    grid-row: content-start / content-end;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #fefefe;
+    text-align: center;
+    /* justify-content: center; */
+    align-content: center;
+}
+
+/* footer{
+    grid-column: sidebar-start / content-end;
+    grid-row: footer-start / footer-end;
+    /* max-height:50px; */
+    /* width: 100%;
+    height: 100%; */
+    /* position:absolute; */
+    /* bottom:0; */
+    /* display: block;
+    margin: 0; */
+    
+/* } */ 
+
+#tabla-padron{
+    display: flex;
+    justify-content:center;
 }
 
 .disabled{
@@ -10,17 +66,6 @@ body{
 .disabledFamiliar{
     pointer-events: none;
     opacity: 1;
-}
-
-.pag-actual{
-    background-color: red;
-}
-
-
-.footer{
-    position: absolute;
-    bottom: 0px;
-    width: 100%
 }
 
 .nav-link{
@@ -40,17 +85,10 @@ body{
     font-size: 500px
 }
 
-p{
-    margin: 0
-}
 
-.navbar{
+/* .navbar{
     border-bottom: 2px solid black;
-}
-
-.footer{
-    border-top: 2px solid black;
-}
+} */
 
 .ocultar{
     display: none
@@ -68,10 +106,93 @@ p{
     display: none;
 }
 
-.em-45{
-    height: 45em;
+.afiliados-recientes li:first-child{
+    background-color: #EEEEEE;
+    font-weight: 600;
 }
 
-.marg0{
-    margin-top: 150px;
+.afiliados-recientes li{
+    padding: 14px 50px;
+    background-color: rgb(253,253,253);
+    margin:0px;
+    min-width: 100%
 }
+
+
+.afiliados-recientes{
+    /* min-height: 80%; */
+    margin: 10px;
+    width: 80%;
+    text-align: center;
+}
+
+
+.link-afiliado{
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.link-afiliado:hover{
+    color: black;
+    font-weight: 600;
+}
+
+aside{
+    grid-column: sidebar-start / sidebar-end;
+    grid-row: content-start / content-end;
+    display: flex;
+    flex-direction: column;
+
+    /* background-color: rgb(253,253,253); */
+}
+
+#container-tabla-footer{
+    width: 70%;
+    background-color: rgb(253,253,253);
+    display: none;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    
+}
+
+.boton-ficha{
+    background-color: #EEEEEE;
+}
+.table tbody tr:first-child{
+    border-top: 1px solid #CECECE
+}
+
+.table th{
+    background-color: #EEEEEE;
+    border: 0px
+}
+
+
+
+#footer-tabla{
+    margin-top: 25px;
+}
+
+.table{
+    margin-bottom:0px
+}
+
+.btn-paginador{
+    background-color: #EEEEEE;
+    width: 45px;
+    /* margin: 2px */
+}
+
+.btn-paginador:hover{
+    background-color: #DDDDDD;
+}
+
+.pag-actual{
+    background-color: #BBBBBB;
+}
+
+.pag-actual:hover{
+    background-color: #AAAAAA;
+}
+

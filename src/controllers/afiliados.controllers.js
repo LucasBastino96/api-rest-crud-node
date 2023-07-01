@@ -1,11 +1,10 @@
 import { AfiliadoModel, FamiliarModel } from "../pruebaDBModels.js";
 import fs from 'fs';
-
+import { spawn } from 'child_process';
 
 export const renderPaginaPrincipal = (req, res) => {
   let data = fs.readFileSync('src/data/afiliadosRecientes.json')
   let afiliadosRecientes = JSON.parse(data)
-  console.log(afiliadosRecientes)
   res.render("paginaPrincipal.ejs", {afiliadosRecientes});
 };
 
@@ -40,7 +39,6 @@ export const buscadorRealTime = async (req, res) => {
     },
     { limit: 10, page: page }
   );
-  console.log(resultadosBusqueda);
   let condicion =
     key == ""
       ? res.send("No hay coincidencias")
@@ -118,19 +116,14 @@ export const fichaAfiliado = async (req, res) => {
 
   // hace un nuevo array filtrando sin repetidos
   let listaAfiliados = afiliadosRecientes.lista;
-  console.log('lista de afiliados todos')
-  console.log(listaAfiliados)
-  console.log('afiliado dni: ', afiliado.dni)
-  listaAfiliados = listaAfiliados.filter(a => a.dni != afiliado.dni )
+  listaAfiliados = listaAfiliados.filter(a => a._id != afiliado._id )
 
   // revisa si hay mas de 10 afiliados
-  if (listaAfiliados.length > 9){
+  if (listaAfiliados.length > 11){
       listaAfiliados.pop();
     }
     
-    listaAfiliados.unshift(afiliado);
-    console.log('SIN REPETIDOS')
-    console.log(listaAfiliados)
+  listaAfiliados.unshift(afiliado);
   afiliadosRecientes.lista = listaAfiliados;
 
   let afiliadosRecientesString = JSON.stringify(afiliadosRecientes)
@@ -139,3 +132,13 @@ export const fichaAfiliado = async (req, res) => {
 
   res.render("fichaAfiliado.ejs", { afiliado, familiares, afiliadosRecientes });
 };
+
+export const hacerBackup = (req, res)=>{
+  spawn('cmd.exe', ['/c','C:/Users/cuent/Desktop/backups/backup.bat']);
+  res.render('backup.ejs')
+}
+
+export const imprimirPadron = async (req, res) =>{
+  const afiliados = await AfiliadoModel.find()
+  res.render('padronAfiliados.ejs', {afiliados})
+}

@@ -1,9 +1,3 @@
-function backUp() {
-  console.log('hola');
-}
-
-
-
 function agregarFamiliarForm() {
   const form = document.getElementById('form-afiliado');
     const familiarForm = document.createElement("div");
