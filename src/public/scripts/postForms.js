@@ -16,20 +16,17 @@ const postForm = () => {
       edad: edad,
       dni: dni
     })
-  }).then(console.log(`Afiliado ${nombre} agregado mediante postForm()`));
+  })
+  .then(res => res.json())
+  .then(res => document.getElementById('link-nuevo-afiliado').href = `/fichaAfiliado/${res.nuevoAfiliado._id}`)
 };
 
 
 
 const postFamiliarForm = () => {
   const nombre = Array.from(document.getElementsByName('nombre')).pop().value;
-  console.log(nombre);
   const edad = Array.from(document.getElementsByName('edad')).pop().value;
-  console.log(edad);
-  const dni_original = Array.from(
-    document.getElementsByName('dni_original')
-  ).pop().value;
-  console.log(dni_original);
+  const dni_original = document.getElementById('dni').value;
 
   fetch('http://localhost:5000/agregarFamiliar', {
     method: 'POST',

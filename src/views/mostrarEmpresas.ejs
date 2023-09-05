@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+    <title>Software Sindicato San Martín</title>
+</head>
+  
+  <body>
+    <navbar class="navbar navbar-dark bg-dark mb-4">
+      <div class="container">
+        <h1 class="navbar-brand">FORMULARIO DE PRUEBA MONGODB</h1>
+      </div>
+    </navbar>
+    
+        <a href="/formAgregarEmpresa"><div class="btn btn-primary">Agregar empresa</div></a>
+
+
+          <table class="tbl">
+            <theader>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Domicilio</th>
+                    <th>CUIT</th>
+                </tr>
+            </theader>
+            <tbody>
+                <% empresas.map(e => { %>
+                    <tr>
+                        <td><%=e.nombre%></td>
+                        <td><%=e.domicilio%></td>
+                        <td><%=e.cuit%></td>
+                        <td><a class="btn btn-ficha" href="/fichaEmpresa/<%=e._id%>"><i class="bi bi-file-earmark-text"></i></a></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        
+
+
+</body>
+</html>

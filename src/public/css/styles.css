@@ -148,7 +148,7 @@ aside{
 }
 
 #container-tabla-footer{
-    width: 70%;
+    width: 80%;
     background-color: rgb(253,253,253);
     display: none;
     flex-direction: column;
@@ -156,7 +156,7 @@ aside{
     
 }
 
-.boton-ficha{
+.btn-ficha{
     background-color: #EEEEEE;
 }
 .table tbody tr:first-child{
@@ -181,6 +181,9 @@ aside{
 .btn-paginador{
     background-color: #EEEEEE;
     width: 45px;
+    border: 0.5px solid #BBBBBB;
+    border-right: 0px;
+    border-radius: 0;
     /* margin: 2px */
 }
 
@@ -196,3 +199,27 @@ aside{
     background-color: #AAAAAA;
 }
 
+.borde-derecha{
+    border-right: 0.5px solid #BBBBBB;
+}
+
+#resultados-busqueda {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.correcto{
+    border: 2px solid green
+}
+
+.verde {
+    color: green;
+}
+
+.rojo{
+    color: red;
+}
+
+.incorrecto{
+    border: 2px solid red;
+}

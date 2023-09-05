@@ -8,11 +8,27 @@ await connection();
 
 router.get('/', c.renderPaginaPrincipal);
 
+router.get('/renderLogin', c.renderLogin)
+
+router.post('/login', c.login)
+
+router.post('/registrarAdmin', c.registrarAdmin);
+
 router.get('/formAgregarAfiliado', c.renderFormAgregarAfiliado);
+
+router.get('/formAgregarEmpresa', c.renderFormAgregarEmpresa);
+
+router.get('/fichaEmpresa/:id', c.fichaEmpresa);
+
+router.post('/buscadorEmpresas', c.buscadorEmpresas);
 
 router.post('/buscadorRealTime', c.buscadorRealTime);
 
 router.post('/agregarAfiliado', c.agregarAfiliado);
+
+router.post('/agregar/empresa', c.agregarEmpresa);
+
+router.post('/agregarFamiliar', c.agregarFamiliar);
 
 router.post('/editar/afiliado/:id', c.editarAfiliado);
 
@@ -20,19 +36,19 @@ router.post('/editar/familiar/:id', c.editarFamiliar);
 
 router.get('/eliminarAfiliado/:id', c.eliminarAfiliado);
 
-router.post('/agregarFamiliar', c.agregarFamiliar)
+router.get('/eliminar/afiliado/:id', c.eliminarAfiliado);
 
-router.get('/eliminar/afiliado/:id', c.eliminarAfiliado)
+router.get('/eliminar/familiar/:id', c.eliminarFamiliar);
 
-router.get('/eliminar/familiar/:id', c.eliminarFamiliar)
+router.get('/fichaAfiliado/:id', c.fichaAfiliado);
 
-router.get('/fichaAfiliado/:id', c.fichaAfiliado)
+router.get('/mostrarEmpresas', c.mostrarEmpresas);
 
-router.get('/imprimirPadron', c.imprimirPadron)
+router.get('/imprimirPadron', c.imprimirPadron);
 
-router.get('/hacerBackup', c.hacerBackup)
+router.get('/hacerBackup', c.hacerBackup);
 
-router.get('/creadorDeData', c.creadorDeData)
+router.get('/creadorDeData', c.creadorDeData);
 
 
 

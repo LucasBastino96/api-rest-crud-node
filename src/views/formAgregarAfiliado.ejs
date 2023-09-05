@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-    />
-    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link href="/css/styles.css" rel="stylesheet" type="text/css" />
     <title>Software Sindicato San Martín</title>
 </head>
   
@@ -26,20 +27,42 @@
         <div class="col-md-5">
           <div class="container">
             <div class="flexbox ">      <form id="form-afiliado">
-              <input id="nombre" type="text" name="nombre" placeholder="Nombre" />
+              <div><input id="nombre" type="text" name="nombre" placeholder="Nombre" />
+              <div class="ocultar verde" id="nombre-correcto"><i class="bi bi-check-circle-fill"></i></div></div>
+              <div class="ocultar rojo" id="nombre-incorrecto"><i class="bi bi-x-square-fill"></i> es incorrecto</div>
+
               <input id="apellido" type="text" name="apellido" placeholder="Apellido" />
+              <div class="ocultar verde" id="apellido-correcto"><i class="bi bi-check-circle-fill"></i></div>
+              <div class="ocultar rojo" id="apellido-incorrecto"><i class="bi bi-x-square-fill"></i> es incorrecto</div>
+
               <input id="edad" type="text" name="edad" placeholder="Edad" />
+              <div class="ocultar verde" id="edad-correcto"><i class="bi bi-check-circle-fill"></i></div>
+              <div class="ocultar rojo" id="edad-incorrecto"><i class="bi bi-x-square-fill"></i> es incorrecto</div>
+
               <input id="dni" type="text" name="dni" placeholder="DNI" />
-              <div type="button" class="btn btn-primary btn-familiar" onclick="postForm(); agregarFamiliarForm(); ocultarBotones();">AGREGAR FAMILIAR</div>
-              <div type="button" class="btn btn-primary btn-familiar" onclick="postForm(); desactivarBotones();">ENVIAR</div>
+              <div class="ocultar verde" id="dni-correcto"><i class="bi bi-check-circle-fill"></i></div>
+              <div class="ocultar rojo" id="dni-incorrecto"><i class="bi bi-x-square-fill"></i> es incorrecto</div>
+              <div>
+                <input class="ocultar" id="input-empresa" name="empresa" disabled>
+                <div id="edit" class="btn ocultar" onclick="editarEmpresa();"><i class="bi bi-pencil"></i></div>
+                <input id="buscador-empresa" placeholder="Empresa" onkeyup="checkKeyEmpresas(value);">
+                <ul id="resultados-busqueda"></ul>
+              </div>
+                           
+              <div type="button" class="btn btn-primary btn-familiar disabled" id="boton-agregar-familiar" onclick="agregarFamiliarForm(); ocultarBotones(); desactivarBotonesNavegacion()">AGREGAR FAMILIAR</div>
+              <div type="button" class="btn btn-primary btn-familiar" id="boton-submit">ENVIAR</div>
             </form>
+            <a href="/formAgregarAfiliado"><div class="btn btn-secondary ocultar" id="boton-otro-afiliado">AGREGAR OTRO AFILIADO</div></a>
+            <a id="link-nuevo-afiliado"><div class="btn btn-success ocultar" id="boton-ficha">FICHA</div></a>
           </div>
         </div>
         
 
 </container>
 <script src="/scripts/scripts.js"></script>
+<script src="/scripts/buscadorEmpresas.js"></script>
 <script src="/scripts/accionesBotones.js"></script>
 <script src="/scripts/postForms.js"></script>
+<script src="/scripts/validacionFormulario.js"></script>
 </body>
 </html>

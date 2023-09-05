@@ -3,6 +3,10 @@ import morgan from 'morgan';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { router } from './routes/routes.js';
+import flash from 'connect-flash';
+import session from 'express-session';
+import passport from 'passport';
+import './passport.js'
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -19,7 +23,18 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended : false }));
+app.use(passport.initialize());
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.session());
+app.use(flash());
 app.use(router);
+
 
 app.listen(process.env.PORT);
 console.log(`Server on port ${process.env.PORT}`);
+
+

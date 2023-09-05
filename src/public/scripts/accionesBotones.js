@@ -20,3 +20,22 @@ function ocultarBotones() {
     console.log('Funcion desactivar botones ejecutada')
   
   }
+
+  const activarBotonFamiliar = () =>{
+    const boton = document.getElementById('boton-agregar-familiar')
+    boton.classList.remove('disabled')
+  }
+
+  const activarBotonesNavegacion = () =>{
+    const afiliado = document.getElementById('boton-otro-afiliado')
+    const ficha = document.getElementById('boton-ficha')
+    afiliado.classList.remove('ocultar')
+    ficha.classList.remove('ocultar')
+  }
+
+  const desactivarBotonesNavegacion = () =>{
+    const afiliado = document.getElementById('boton-otro-afiliado')
+    const ficha = document.getElementById('boton-ficha')
+    afiliado.classList.add('ocultar')
+    ficha.classList.add('ocultar')
+  }
